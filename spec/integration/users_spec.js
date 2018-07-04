@@ -26,12 +26,14 @@ describe("routes : users", () => {
     it("should render a view with a sign up form", (done) => {
       request.get(`${base}sign_up`, (err, res, body) => {
         expect(err).toBeNull();
-        expect(body).toContain("Sign Up");
+        expect(body).toContain("Join The Archive");
         done();
       });
     });
 
   });
+
+  
 
   describe("POST /users/sign_up", () => {
 
@@ -46,11 +48,42 @@ describe("routes : users", () => {
       }
       request.post(options,
         (err, res, body) => {
-          User.findOne({where: {email: "user@example.com"}})
+
+          User.findOne({where: {username: "UserExample"}})
           .then((user) => {
             expect(user).not.toBeNull();
             expect(user.email).toBe("user@example.com");
             expect(user.id).toBe(1);
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          });
+        }
+      );
+    });
+
+    it("should create a hashed password", (done) => {
+
+      const options = {
+        url: `${base}sign_up`,
+        form: {
+          username: "UserExample",
+          email: "user@example.com",
+          password: "1234567890",
+        }
+      }
+
+      request.post(options,
+        (err, res, body) => {
+
+          User.findOne({where: {username: "UserExample"}})
+          .then((user) => {
+            expect(user).not.toBeNull();
+            expect(user.email).toBe("user@example.com");
+            expect(user.id).toBe(1);
+            expect(user.password).not.toBe("1234567890");
             done();
           })
           .catch((err) => {
@@ -66,13 +99,13 @@ describe("routes : users", () => {
         {
           url: `${base}sign_up`,
           form: {
-            username: "NotUserExample",
-            email: "user@wrong.com",
-            password: "0987654321"
+            username: "UserExample",
+            email: "no",
+            password: "1234567890"
           }
         },
         (err, res, body) => {
-          User.findOne({where: {email: "user@wrong.com"}})
+          User.findOne({where: {email: "no"}})
           .then((user) => {
             expect(user).toBeNull();
             done();
@@ -86,5 +119,6 @@ describe("routes : users", () => {
     });
 
   });
+  
 
 });
