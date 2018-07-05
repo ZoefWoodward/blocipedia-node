@@ -44,7 +44,7 @@ module.exports = {
     })
   },
 
-  signOutForm(req, res, next){
+  signOut(req, res, next){
     req.logout();
     req.flash("notice", "You've succesfully signed out!");
     res.redirect("/");
