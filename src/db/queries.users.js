@@ -17,7 +17,7 @@ module.exports = {
       const sgMail = require('@sendgrid/mail');
       sgMail.setApiKey(process.env.SENDGRID_API_KEY);
       const msg = {
-      to: 'newUser.email',
+      to: newUser.email,
       from: 'donotreply@example.com',
       subject: 'Account Confirmation',
       text: 'Welcome to The Archive',
@@ -25,8 +25,10 @@ module.exports = {
     };
       sgMail.send(msg);
       callback(null, user);
+      
     })
     .catch((err) => {
+      console.log(err);
       callback(err);
     })
   },
