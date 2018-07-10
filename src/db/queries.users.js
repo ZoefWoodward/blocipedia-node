@@ -1,7 +1,9 @@
+require("dotenv").config();
 const User = require("./models").User;
 const bcrypt = require("bcryptjs");
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 
 module.exports = {
 
@@ -14,23 +16,18 @@ module.exports = {
       password: hashedPassword
     })
     .then((user) => {
-      const sgMail = require('@sendgrid/mail');
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
       const msg = {
-      to: newUser.email,
-      from: 'donotreply@example.com',
-      subject: 'Account Confirmation',
-      text: 'Welcome to The Archive',
-      html: '<strong>Please log in to start creating resources!</strong>',
-    };
+        to: newUser.email,
+        from: 'donotreply@example.com',
+        subject: 'Account confirmation',
+        text: 'Welcome to The Archive!',
+        html: '<strong>Please login to start creating wikis!</strong>',
+      };
       sgMail.send(msg);
       callback(null, user);
-      
     })
     .catch((err) => {
-      console.log(err);
       callback(err);
     })
-  },
-
+  }
 }

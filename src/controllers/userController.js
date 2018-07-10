@@ -3,6 +3,10 @@ const passport = require("passport");
 
 module.exports = {
 
+  index(req, res, next){
+    res.render("/users");
+  },
+
   signUp(req, res, next){
     res.render("users/sign_up");
   },
@@ -14,7 +18,6 @@ module.exports = {
       password: req.body.password,
       passwordConfirmation: req.body.passwordConfirmation
     };
-    
     userQueries.createUser(newUser, (err, user) => {
       if(err){
         req.flash("error", err);
@@ -33,7 +36,7 @@ module.exports = {
   },
 
   signIn(req, res, next){
-    passport.authenticate("local")(req, res, function () {
+    passport.authenticate("local")(req, res, () => {
       if(!req.user){
         req.flash("notice", "Sign in failed. Please try again.")
         res.redirect("/users/sign_in");
