@@ -3,10 +3,6 @@ const passport = require("passport");
 
 module.exports = {
 
-  index(req, res, next){
-    res.render("/users");
-  },
-
   signUp(req, res, next){
     res.render("users/sign_up");
   },
@@ -44,13 +40,13 @@ module.exports = {
         req.flash("notice", "You've successfully signed in!");
         res.redirect("/");
       }
-    })
+    });
   },
 
   signOut(req, res, next){
     req.logout();
     req.flash("notice", "You've succesfully signed out!");
     res.redirect("/");
-  }
+  },
 
 }

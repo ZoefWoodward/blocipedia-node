@@ -37,7 +37,7 @@ describe("User", () => {
 
     it("should not create a user with invalid username, email, or password", (done) => {
       User.create({
-        username: "UserExample",
+        username: "Mario",
         email: "It's-a me, Mario!",
         password: "1234567890"
       })
@@ -80,7 +80,7 @@ describe("User", () => {
       .catch((err) => {
         console.log(err);
         done();
-      });
+      })
     });
 
   });

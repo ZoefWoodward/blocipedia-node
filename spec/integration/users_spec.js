@@ -33,8 +33,6 @@ describe("routes : users", () => {
 
   });
 
-  
-
   describe("POST /users/sign_up", () => {
 
     it("should create a new user with valid values and redirect", (done) => {
