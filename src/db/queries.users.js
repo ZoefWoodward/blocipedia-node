@@ -18,7 +18,7 @@ module.exports = {
     .then((user) => {
       const msg = {
         to: newUser.email,
-        from: 'donotreply@thearchive.com',
+        from: 'donotreply@test.com',
         subject: 'Account confirmation',
         text: 'Welcome to The Archive!',
         html: '<strong>You can now login to start creating wikis!</strong>',
