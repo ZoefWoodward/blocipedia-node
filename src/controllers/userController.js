@@ -40,7 +40,7 @@ module.exports = {
         req.flash("notice", "You've successfully signed in!");
         res.redirect("/");
       }
-    });
+    })
   },
 
   signOut(req, res, next){

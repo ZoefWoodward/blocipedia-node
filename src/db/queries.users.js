@@ -18,10 +18,10 @@ module.exports = {
     .then((user) => {
       const msg = {
         to: newUser.email,
-        from: 'donotreply@example.com',
+        from: 'donotreply@thearchive.com',
         subject: 'Account confirmation',
         text: 'Welcome to The Archive!',
-        html: '<strong>Please login to start creating wikis!</strong>',
+        html: '<strong>You can now login to start creating wikis!</strong>',
       };
       sgMail.send(msg);
       callback(null, user);
