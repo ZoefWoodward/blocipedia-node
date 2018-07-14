@@ -83,11 +83,12 @@ describe("routes : wikis", () => {
           private: true,
           userId: this.user.id
         }
-      };
+      }
       request.post(options,
         (err, res, body) => {
           console.log("wikis_spec2 "+res);
           console.log("wikis_spec3 "+body);
+          console.log("wikis_spec4 "+err);
           Wiki.findOne({where: {title: "blink-182 songs"}})
           .then((wiki) => {
             expect(wiki.title).toBe("blink-182 songs");

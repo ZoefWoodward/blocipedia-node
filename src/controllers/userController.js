@@ -3,6 +3,10 @@ const passport = require("passport");
 
 module.exports = {
 
+  index(req, res, next){
+    res.render("/users");
+  },
+
   signUp(req, res, next){
     res.render("users/sign_up");
   },
@@ -20,7 +24,7 @@ module.exports = {
         res.redirect("/users/sign_up");
       } else {
         passport.authenticate("local")(req, res, () => {
-          req.flash("notice", "You've successfully signed in!");
+          req.flash("notice", "You've successfully signed up!");
           res.redirect("/");
         })
       }
