@@ -8,7 +8,7 @@ module.exports = {
           if(err){
               res.redirect(500, "static/index");
           } else {
-              res.redirect("wikis/index", {wikis});
+              res.render("wikis/index", {wikis});
           }
       });
     },
