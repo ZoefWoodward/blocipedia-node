@@ -14,7 +14,14 @@
         <header class="jumbotron my-4">
           <h1 class="display-3">Welcome to The Archive</h1>
           <p class="lead">An application for wikis, created and edited by users around the world.</p>
+          
+          <% if(!currentUser) { %>
           <a href="/users/sign_up" class="btn btn-primary btn-lg">Sign up</a>
+         <% } %>
+         
+         <% if(currentUser) { %>
+          <a href="/wikis" class="btn btn-primary btn-lg">Create Wikis</a>
+        <% } %>
         </header>
       </main>
       <% include ./partials/baseScripts.ejs %>
