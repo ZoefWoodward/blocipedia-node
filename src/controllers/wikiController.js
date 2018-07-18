@@ -66,7 +66,6 @@ module.exports = {
         });
     },
 
-    //possible removal of .params.id if failure
     destroy(req, res, next){
         wikiQueries.deleteWiki(req.params.id, (err, wiki) => {
             if(err){
@@ -78,7 +77,7 @@ module.exports = {
     },
 
     edit(req, res, next){
-        wikiQueries.getWiki(req.params.id, (err, wiki) => {
+        wikiQueries.getWiki(req.params.id, (err, wiki) => {  
           if(err || wiki == null){
             res.redirect(404, "/");
           } else {
@@ -93,7 +92,6 @@ module.exports = {
         });
       },
 
-    //possible removal of .params.id if failure
     update(req, res, next){
         wikiQueries.updateWiki(req.params.id, req.body, (err, wiki) => {
             if(err || wiki == null){

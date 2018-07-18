@@ -78,21 +78,18 @@ describe("routes : wikis", () => {
       const options = {
         url: `${base}create`,
         form: {
-          title: "blink-182 songs",
-          body: "What's your favorite blink-182 song?",
+          title: "New Wiki",
+          body: "New Wiki body",
           private: true,
           userId: this.user.id
         }
-      }
+      };
       request.post(options,
         (err, res, body) => {
-          console.log("wikis_spec2 "+res);
-          console.log("wikis_spec3 "+body);
-          console.log("wikis_spec4 "+err);
-          Wiki.findOne({where: {title: "blink-182 songs"}})
+          Wiki.findOne({where: {title: "New Wiki"}})
           .then((wiki) => {
-            expect(wiki.title).toBe("blink-182 songs");
-            expect(wiki.body).toBe("What's your favorite blink-182 song?");
+            expect(wiki.title).toBe("New Wiki");
+            expect(wiki.body).toBe("New Wiki body");
             done();
           })
           .catch((err) => {
@@ -173,6 +170,5 @@ describe("routes : wikis", () => {
   });
   
   //end context for admin user
-
 
 });
