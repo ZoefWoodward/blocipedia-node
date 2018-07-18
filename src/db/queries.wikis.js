@@ -25,6 +25,22 @@ module.exports = {
       })
   },
 
+  privateToPublic(id){
+      return Wiki.all()
+      .then((wikis) => {
+          wikis.forEach((wiki) => {
+              if(wiki.userId == id && wiki.private == true){
+                  wiki.update({
+                      private: false
+                  })
+              }
+          })
+      })
+      .catch((err) => {
+          callback(err);
+      })
+  },
+
   addWiki(newWiki, callback){
       return Wiki.create({
           title: newWiki.title,

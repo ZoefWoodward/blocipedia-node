@@ -21,7 +21,7 @@ describe("routes : wikis", () => {
         username: "UserExample",
         email: "user@example.com",
         password: "123456",
-        role: "standard"
+        role: "premium"
       })
       .then((user) => {
         this.user = user;
@@ -56,7 +56,7 @@ describe("routes : wikis", () => {
 
   describe("GET /wikis/", () => {
     it("should render the wiki index page", (done) => {
-      request.get(base, (err, res, body) => {
+      request.get(`${base}private`, (err, res, body) => {
         expect(err).toBeNull();
         expect(body).toContain("Wikis");
         done();
@@ -128,11 +128,21 @@ describe("routes : wikis", () => {
                     done();
                 })
                 .catch((err) => {
-            console.log(err);
-            done();
-          })
-        });
-      })
+                console.log(err);
+                done();
+                })
+            });
+        })
+    });
+  });
+
+  describe("GET /wikis/:id/edit", () => {
+    it("should render a view with an edit wiki form", (done) => {
+      request.get(`${base}${this.wiki.id}/edit`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("Edit Wiki");
+        done();
+      });
     });
   });
 
@@ -160,7 +170,9 @@ describe("routes : wikis", () => {
         });
       });
     });
-  });//end context for admin user
+  });
+  
+  //end context for admin user
 
 
 });

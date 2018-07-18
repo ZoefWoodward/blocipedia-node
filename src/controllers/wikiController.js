@@ -13,6 +13,15 @@ module.exports = {
       });
     },
 
+    privateIndex(req, res, next){
+        wikiQueries.getAllWikis((err, wikis) => {
+            if(err){
+                res.redirect(500, "static/index");
+            } else {
+                res.render("wikis/private", {wikis});
+            }
+        })
+    },
 
     new(req, res, next){
       const authorized = new Authorizer(req.user).new();
@@ -70,19 +79,19 @@ module.exports = {
 
     edit(req, res, next){
         wikiQueries.getWiki(req.params.id, (err, wiki) => {
-            if(err || wiki == null){
-                res.redirect(404, "/");
+          if(err || wiki == null){
+            res.redirect(404, "/");
+          } else {
+            const authorized = new Authorizer(req.user, wiki).edit();
+            if(authorized){
+              res.render("wikis/edit", {wiki});
             } else {
-              const authorized = new Authorizer(req.user, wiki).edit();
-              if(authorized){
-                res.render("wikis/edit", {wiki});
-            } else {
-              req.flash("notice", "You are not authorized to do that.");
-              res.redirect(`/wikis/${wiki.id}`)
+              req.flash("You are not authorized to do that.")
+              res.redirect(`/wikis/${req.params.id}`)
             }
           }
         });
-    },
+      },
 
     //possible removal of .params.id if failure
     update(req, res, next){

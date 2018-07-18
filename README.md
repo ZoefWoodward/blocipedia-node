@@ -1,4 +1,4 @@
-## The Archive is a wiki style website with premium paid accounts where users can collaborate, back-end currently being built-out, currently unstyled.
+## The Archive is a wiki style website with premium paid accounts where users can collaborate. Currently unstyled, and the back-end is currently being built-out.
 
 ### Made with Express.js, Request, Node.js,PostgreSQL/sequelize/sequelize cli, ejs, Bootstrap, JQuery.
 ### Using Morgan for route logging.
