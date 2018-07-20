@@ -14,7 +14,7 @@
           </li>
 
 
-          <% if(currentUser && currentUser.role === "premium") { %>
+          <% if(currentUser && currentUser.role != "standard") { %>
 
             <li class ="nav-item">
               <a class="nav-link" href="/wikis/private">Private Wikis</a>
@@ -40,6 +40,10 @@
 
             <li class="nav-item">
               <a class="nav-link" href="/wikis">Wikis</a>
+             </li>
+
+             <li class="nav-item">
+               <a class="nav-link" href="/users/collaborations">Collaborations</a>
              </li>
 
             <li class="nav-item">

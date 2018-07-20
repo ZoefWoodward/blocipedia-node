@@ -16,6 +16,8 @@ router.get("/users/sign_out", userController.signOut);
 
 router.get("/users/upgrade", userController.upgrade);
 
+router.get("/users/collaborations", userController.showCollaborations);
+
 router.post("/users/:id/upgrade", userController.payment);
 
 router.post("/users/:id/downgrade", userController.downgrade);
